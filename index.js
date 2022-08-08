@@ -1,6 +1,6 @@
 const colors = ["red", "blue", "green"]
 
-document.getElementById("add").addEventListener("onclick", function(e){
+document.getElementById("add").addEventListener("click", function(e){
     const subItem = createSubItem(e)
     document.getElementById("list").appendChild(subItem)
 })
@@ -8,20 +8,21 @@ document.getElementById("add").addEventListener("onclick", function(e){
 function createDropDown(){
     const dropDown = document.createElement("select")
     for (let i = 0; i < colors; i++){
-        const option = createElement("option") 
+        const option = document.createElement("option")
         option.innerHTML = colors[i]
         option.value = colors[i]
-        dropDown.append(option)
+        dropDown.append(option).value = colors[i]
     }
-    dropDown.addEventListener("onchange", function(e){
+    dropDown.addEventListener("change", function(e){
         e.target.parent.backgroundColor = e.target.value
+        console.log(e.target.value)
     })
     return dropDown
 }
 
 function createSubItem(e){
     const subItem = document.createElement("div")
-    var subItemValue = document.getElementById("input")
+    var subItemValue = document.getElementById("input").value
     subItem.textContent = subItemValue
     const dropDown = createDropDown()
     subItem.appendChild(dropDown)
@@ -29,4 +30,9 @@ function createSubItem(e){
     return subItem
 }
 
-
+// let person = {
+//     name: "John", 
+//     address: {
+//         street: "123 Main St",
+//     }
+// }
